@@ -16,6 +16,7 @@
     </div>
 </div>
 
+
 <div id="wrapper" style="display: none;">
     
     <div id="gift-box" onclick="openGift()">
@@ -28,7 +29,21 @@
         </div>
     </div>
 
+
+    
     <div id="bouquet-reveal">
+
+        <div id="mini-note">
+    <div class="note-paper">Mahal na mahal kita!
+        <p>Thank you sa pagiging loving at caring mo, and for always making me feel so special and loved. I’m so lucky to have you, my pookie bear!</p>
+    </div>
+</div>
+
+<div id="gift-box" onclick="openGift()">
+    </div>
+
+    
+
         <svg class="bouquet-svg" viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg">
             <g fill="#FFFFFF">
                 <path d="M 230,50 Q 240,50 240,40 Q 240,50 250,50 Q 240,50 240,60 Q 240,50 230,50 Z" />
@@ -110,11 +125,13 @@
                 <polygon points="0,6 12,0 180,0 180,24 12,24 0,18" fill="#FFFFFF" />
                 <polygon points="12,3 177,3 177,21 12,21 4,12" fill="none" stroke="#222222" stroke-width="1.5" stroke-dasharray="3,3" />
                 <circle cx="12" cy="12" r="3" fill="#F8F4E6" />
-                <text x="24" y="16" font-family="'Courier New', Courier, monospace" font-size="10" font-weight="bold" fill="#222222" letter-spacing="1">I LOVE YOU SO MUCHHH</text>
+                <text x="24" y="16" font-family="'Courier New', Courier, monospace" font-size="10" font-weight="bold" fill="#222222" letter-spacing="1">FOR MY PRETTY AYAAA</text>
             </g>
         </svg>
     </div>
 
+
+    
 </div>
 
 <script>
@@ -211,6 +228,32 @@
                 }
             });
         }, 150);
+    }
+</script>
+
+<script>
+    function openGift() {
+        // 1. Reveal the surprise
+        document.getElementById('wrapper').classList.add('is-open');
+        
+        // 2. Flower Rain
+        const end = Date.now() + 5000;
+        const interval = setInterval(function() {
+            confetti({ particleCount: 5, angle: 60, spread: 55, origin: { x: 0 }, shapes: ['text'], shapeOptions: { text: { value: ['🌸','🌷','🌹'] } } });
+            confetti({ particleCount: 5, angle: 120, spread: 55, origin: { x: 1 }, shapes: ['text'], shapeOptions: { text: { value: ['🌸','🌷','🌹'] } } });
+            if (Date.now() > end) clearInterval(interval);
+        }, 150);
+
+        // 3. Make the note appear after 1 second (so it doesn't pop up instantly)
+        setTimeout(() => {
+            document.getElementById('mini-note').style.display = 'block';
+            document.getElementById('mini-note').style.animation = 'fadeIn 1s ease';
+        }, 3000);
+    }
+
+    function showMessage() {
+        document.getElementById('mini-note').style.display = 'none';
+        document.getElementById('love-message').style.display = 'block';
     }
 </script>
 
