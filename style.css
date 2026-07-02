@@ -275,3 +275,9 @@ body {
 #love-message {
     z-index: 50; 
 }
+
+/* Add this to style.css */
+#no-btn {
+    position: relative; /* Ensure it starts in the right place */
+    touch-action: manipulation; /* Improves touch responsiveness */
+}
