@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>for my baby</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div id="question-screen">
+    <h1 id="question-text">Do you love me my pookie bear?</h1>
+    <div class="button-container">
+        <button id="yes-btn" onclick="sayYes()">Yes!</button>
+        <button id="no-btn" onmouseover="moveNoButton()">No</button>
+    </div>
+</div>
+
+<div id="wrapper" style="display: none;">
+    
+    <div id="gift-box" onclick="openGift()">
+        <div class="lid">
+            <div class="bow-left"></div>
+            <div class="bow-right"></div>
+        </div>
+        <div class="box">
+            <span class="tap-text">TAP TO OPEN</span>
+        </div>
+    </div>
+
+    <div id="bouquet-reveal">
+        <svg class="bouquet-svg" viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg">
+            <g fill="#FFFFFF">
+                <path d="M 230,50 Q 240,50 240,40 Q 240,50 250,50 Q 240,50 240,60 Q 240,50 230,50 Z" />
+                <path d="M 580,500 Q 590,500 590,490 Q 590,500 600,500 Q 590,500 590,510 Q 590,500 580,500 Z" />
+                <path d="M 620,100 Q 625,100 625,95 Q 625,100 630,100 Q 625,100 625,105 Q 625,100 620,100 Z" opacity="0.6"/>
+            </g>
+
+            <path d="M 120,210 Q 400,520 680,210 Q 400,420 120,210 Z" fill="#EED4DC" />
+
+            <polygon points="210,120 300,50 500,40 590,130 520,260 400,310 280,260" fill="#EFD7DF" />
+            
+            <polygon points="260,140 330,80 470,80 520,140 450,230 350,230" fill="#FFFFFF" />
+
+            <g fill="#8EAA9A">
+                <ellipse cx="280" cy="120" rx="18" ry="12" transform="rotate(-30 280 120)" />
+                <circle cx="340" cy="70" r="7" />
+                <circle cx="430" cy="50" r="8" />
+                <circle cx="460" cy="75" r="6" />
+                <circle cx="510" cy="100" r="7" />
+                <circle cx="480" cy="140" r="6" />
+            </g>
+
+            <g fill="#F2D56B">
+                <path d="M 320,140 Q 330,80 355,130 Z" />
+                <path d="M 335,145 Q 360,90 380,140 Z" />
+            </g>
+
+            <g transform="translate(390, 90)">
+                <ellipse cx="0" cy="-15" rx="5" ry="15" fill="#FFFFFF" />
+                <ellipse cx="0" cy="15" rx="5" ry="15" fill="#FFFFFF" />
+                <ellipse cx="-15" cy="0" rx="15" ry="5" fill="#FFFFFF" />
+                <ellipse cx="15" cy="0" rx="15" ry="5" fill="#FFFFFF" />
+                <circle cx="0" cy="0" r="5" fill="#F2D56B" />
+            </g>
+
+            <g transform="translate(500, 140) rotate(20)">
+                <ellipse cx="0" cy="-20" rx="6" ry="20" fill="#EFBCD2" />
+                <ellipse cx="0" cy="20" rx="6" ry="20" fill="#EFBCD2" />
+                <ellipse cx="-20" cy="0" rx="20" ry="6" fill="#EFBCD2" />
+                <ellipse cx="20" cy="0" rx="20" ry="6" fill="#EFBCD2" />
+                <circle cx="0" cy="0" r="5" fill="#F2D56B" />
+            </g>
+
+            <ellipse cx="290" cy="190" rx="22" ry="45" transform="rotate(-30 290 190)" fill="#C3647B" />
+            <ellipse cx="460" cy="190" rx="18" ry="35" transform="rotate(35 460 190)" fill="#9A5A87" />
+
+            <circle cx="330" cy="165" r="22" fill="#EA9AA7" />
+            <circle cx="330" cy="165" r="12" fill="#DF7A8D" />
+
+            <circle cx="410" cy="175" r="38" fill="#8C1D24" stroke="#A5222B" stroke-width="6" />
+
+            <circle cx="330" cy="245" r="30" fill="#D598A1" />
+            <circle cx="330" cy="245" r="20" fill="#C8828E" />
+            
+            <circle cx="390" cy="255" r="32" fill="#93666A" />
+            <circle cx="390" cy="255" r="22" fill="#80565A" />
+            
+            <circle cx="445" cy="245" r="26" fill="#D58C9A" />
+            <circle cx="445" cy="245" r="16" fill="#C57A89" />
+            
+            <circle cx="490" cy="225" r="25" fill="#DB9F73" />
+            <circle cx="490" cy="225" r="15" fill="#C88A5E" />
+
+            <g fill="#89A2C7">
+                <circle cx="435" cy="135" r="6" /> <circle cx="448" cy="130" r="5" /> <circle cx="440" cy="120" r="5" />
+                <circle cx="355" cy="210" r="6" /> <circle cx="368" cy="205" r="5" /> <circle cx="360" cy="220" r="5" />
+                <circle cx="490" cy="170" r="5" /> <circle cx="500" cy="160" r="6" /> <circle cx="485" cy="180" r="5" />
+            </g>
+
+            <g id="front-bow">
+                <path d="M 400,420 C 340,380 320,410 340,435 C 360,460 380,440 400,425" fill="#CF8998" />
+                <path d="M 400,420 C 460,380 480,410 460,435 C 440,460 420,440 400,425" fill="#CF8998" />
+                <path d="M 395,425 Q 360,520 375,560 Q 390,520 402,430" fill="#CF8998" />
+                <path d="M 405,425 Q 440,520 425,560 Q 410,520 398,430" fill="#CF8998" />
+                <ellipse cx="400" cy="425" rx="12" ry="14" fill="#CF8998" />
+            </g>
+
+            <g class="tag" transform="translate(425, 450) rotate(45)">
+                <polygon points="0,6 12,0 180,0 180,24 12,24 0,18" fill="#FFFFFF" />
+                <polygon points="12,3 177,3 177,21 12,21 4,12" fill="none" stroke="#222222" stroke-width="1.5" stroke-dasharray="3,3" />
+                <circle cx="12" cy="12" r="3" fill="#F8F4E6" />
+                <text x="24" y="16" font-family="'Courier New', Courier, monospace" font-size="10" font-weight="bold" fill="#222222" letter-spacing="1">I LOVE YOU SO MUCHHH</text>
+            </g>
+        </svg>
+    </div>
+
+</div>
+
+<script>
+    // The list of questions to ask!
+    const questions = [
+        "Do you love me my pookie bear?",
+        "Are you sure?",
+        "Do you mean it?",
+        "Really?",
+        "100% sure?"
+    ];
+    let currentQuestionIndex = 0;
+
+    // 1. Troll the "No" button
+    function moveNoButton() {
+        const noBtn = document.getElementById('no-btn');
+        
+        // Calculate max allowed coordinates so it stays on screen
+        const maxX = window.innerWidth - noBtn.offsetWidth - 20;
+        const maxY = window.innerHeight - noBtn.offsetHeight - 20;
+        
+        // Generate random X and Y
+        const randomX = Math.floor(Math.random() * maxX);
+        const randomY = Math.floor(Math.random() * maxY);
+        
+        // Move it
+        noBtn.style.position = 'absolute';
+        noBtn.style.left = randomX + 'px';
+        noBtn.style.top = randomY + 'px';
+    }
+
+    // 2. Handle the "Yes" clicks
+    function sayYes() {
+        currentQuestionIndex++;
+        
+        // If there are still questions left...
+        if (currentQuestionIndex < questions.length) {
+            // Update the text
+            document.getElementById('question-text').innerText = questions[currentQuestionIndex];
+            
+            // Reset the "No" button back to its starting spot so she has to try to click it again!
+            const noBtn = document.getElementById('no-btn');
+            noBtn.style.position = 'relative';
+            noBtn.style.left = 'auto';
+            noBtn.style.top = 'auto';
+        } 
+        // If all questions are answered...
+        else {
+            document.getElementById('question-screen').style.display = 'none';
+            const wrapper = document.getElementById('wrapper');
+            wrapper.style.display = 'flex'; 
+        }
+    }
+
+    // 3. Open the gift box
+    function openGift() {
+        document.getElementById('wrapper').classList.add('is-open');
+    }
+</script>
+
+</body>
+</html>

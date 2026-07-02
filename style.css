@@ -1,0 +1,168 @@
+/* Page Setup */
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #F8F4E6; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    overflow: hidden;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+#wrapper {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* =========================================
+   THE GIFT BOX 
+   ========================================= */
+#gift-box {
+    position: absolute;
+    z-index: 10;
+    cursor: pointer;
+    transition: all 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+/* Box Body */
+.box {
+    width: 220px;
+    height: 180px;
+    background: #CF8998;
+    border-radius: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+    position: relative;
+}
+
+/* Vertical Ribbon on the Box */
+.box::after {
+    content: '';
+    position: absolute;
+    width: 40px;
+    height: 100%;
+    background: #EFD7DF;
+    left: 90px;
+}
+
+/* The text on the front */
+.tap-text {
+    color: white;
+    z-index: 2;
+    font-weight: 800;
+    font-size: 14px;
+    letter-spacing: 3px;
+    background: rgba(0,0,0,0.1);
+    padding: 8px 15px;
+    border-radius: 20px;
+    transition: transform 0.3s ease;
+}
+
+/* The Box Lid */
+.lid {
+    width: 240px;
+    height: 45px;
+    background: #C3647B;
+    border-radius: 6px;
+    position: absolute;
+    top: -22px;
+    left: -10px;
+    box-shadow: 0 8px 15px rgba(0,0,0,0.1);
+    transition: transform 0.4s ease;
+    z-index: 3;
+}
+
+/* Ribbon on the Lid */
+.lid::after {
+    content: '';
+    position: absolute;
+    width: 40px;
+    height: 100%;
+    background: #EFD7DF;
+    left: 100px;
+}
+
+/* The Bow on Top */
+.bow-left, .bow-right {
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    border: 8px solid #EFD7DF;
+    border-radius: 50% 50% 0 50%;
+    top: -25px;
+}
+.bow-left { left: 90px; transform: rotate(15deg); }
+.bow-right { left: 110px; border-radius: 50% 50% 50% 0; transform: rotate(-15deg); }
+
+/* Hover effects to hint it's clickable */
+#gift-box:hover .lid { transform: translateY(-8px) rotate(2deg); }
+#gift-box:hover .tap-text { transform: scale(1.1); }
+
+/* =========================================
+   THE BOUQUET REVEAL
+   ========================================= */
+#bouquet-reveal {
+    opacity: 0;
+    /* Start tiny and pushed down */
+    transform: scale(0.2) translateY(300px); 
+    /* This creates the bouncy spring effect */
+    transition: all 1.2s cubic-bezier(0.34, 1.56, 0.64, 1); 
+    pointer-events: none;
+    position: absolute;
+    width: 100%;
+    max-width: 650px;
+    display: flex;
+    justify-content: center;
+}
+
+/* Keeping the float and sway animations from before */
+.bouquet-svg {
+    width: 100%;
+    height: auto;
+    animation: float 4s ease-in-out infinite;
+}
+
+.tag {
+    transform-origin: 12px 12px;
+    animation: sway 3s ease-in-out infinite alternate;
+}
+
+
+/* =========================================
+   ANIMATION STATES (When Clicked)
+   ========================================= */
+
+/* Hide the box */
+.is-open #gift-box {
+    opacity: 0;
+    transform: translateY(150px) scale(0.8) rotate(-10deg);
+    pointer-events: none;
+}
+
+/* Reveal the bouquet */
+.is-open #bouquet-reveal {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+    pointer-events: auto;
+}
+
+
+/* Keyframes */
+@keyframes float {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+    100% { transform: translateY(0px); }
+}
+
+@keyframes sway {
+    0% { transform: translate(425px, 450px) rotate(40deg); }
+    100% { transform: translate(425px, 450px) rotate(50deg); }
+}
