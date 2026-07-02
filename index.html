@@ -118,7 +118,6 @@
 </div>
 
 <script>
-    // The list of questions to ask!
     const questions = [
         "Do you love me my pookie bear?",
         "Are you sure?",
@@ -128,50 +127,90 @@
     ];
     let currentQuestionIndex = 0;
 
-    // 1. Troll the "No" button
     function moveNoButton() {
         const noBtn = document.getElementById('no-btn');
-        
-        // Calculate max allowed coordinates so it stays on screen
         const maxX = window.innerWidth - noBtn.offsetWidth - 20;
         const maxY = window.innerHeight - noBtn.offsetHeight - 20;
-        
-        // Generate random X and Y
         const randomX = Math.floor(Math.random() * maxX);
         const randomY = Math.floor(Math.random() * maxY);
         
-        // Move it
         noBtn.style.position = 'absolute';
         noBtn.style.left = randomX + 'px';
         noBtn.style.top = randomY + 'px';
     }
 
-    // 2. Handle the "Yes" clicks
     function sayYes() {
         currentQuestionIndex++;
         
-        // If there are still questions left...
         if (currentQuestionIndex < questions.length) {
-            // Update the text
             document.getElementById('question-text').innerText = questions[currentQuestionIndex];
-            
-            // Reset the "No" button back to its starting spot so she has to try to click it again!
+            // Reset "No" button
             const noBtn = document.getElementById('no-btn');
             noBtn.style.position = 'relative';
-            noBtn.style.left = 'auto';
-            noBtn.style.top = 'auto';
-        } 
-        // If all questions are answered...
-        else {
+            noBtn.style.left = '0px';
+            noBtn.style.top = '0px';
+        } else {
+            // Hide questions and show the surprise
             document.getElementById('question-screen').style.display = 'none';
-            const wrapper = document.getElementById('wrapper');
-            wrapper.style.display = 'flex'; 
+            document.getElementById('wrapper').style.display = 'flex';
         }
     }
 
-    // 3. Open the gift box
     function openGift() {
         document.getElementById('wrapper').classList.add('is-open');
+    }
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
+
+<script>
+    // Update your openGift function to this:
+    function openGift() {
+        // 1. Trigger the animation class
+        document.getElementById('wrapper').classList.add('is-open');
+
+        // 2. Trigger the Flower Rain!
+        const flowerDuration = 5 * 1000;
+        const animationEnd = Date.now() + flowerDuration;
+
+        const interval = setInterval(function() {
+            const timeLeft = animationEnd - Date.now();
+
+            if (timeLeft <= 0) {
+                return clearInterval(interval);
+            }
+
+            confetti({
+                particleCount: 5,
+                angle: 60,
+                spread: 55,
+                origin: { x: 0 },
+                shapes: ['circle'],
+                // This magic line makes them emojis!
+                scalar: 2,
+                ticks: 50,
+                shapes: ['text'],
+                shapeOptions: {
+                    text: {
+                        value: ['🌸', '🌼', '🌷', '🌹', '🌻']
+                    }
+                }
+            });
+            confetti({
+                particleCount: 5,
+                angle: 120,
+                spread: 55,
+                origin: { x: 1 },
+                shapes: ['text'],
+                scalar: 2,
+                ticks: 50,
+                shapeOptions: {
+                    text: {
+                        value: ['🌸', '🌼', '🌷', '🌹', '🌻']
+                    }
+                }
+            });
+        }, 150);
     }
 </script>
 
