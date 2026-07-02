@@ -215,3 +215,63 @@ body {
     background: rgba(248, 244, 230, 0.7); /* Fades the photo into the page color */
     z-index: -1;
 }
+/* --- MINI NOTE STYLING --- */
+#mini-note {
+    position: absolute;
+    top: 20%;    /* Adjust this to move it higher or lower */
+    left: 70%;   /* Adjust this to move it left or right */
+    z-index: 20;
+    cursor: pointer;
+    animation: bounce 2s infinite ease-in-out;
+}
+
+.note-paper {
+    background: #FFF9C4; /* Soft yellow sticky note color */
+    color: #555;
+    padding: 10px 15px;
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: bold;
+    border-radius: 2px;
+    box-shadow: 2px 2px 5px rgba(0,0,0,0.1);
+    transform: rotate(5deg);
+    border: 1px solid #F1E5AC;
+}
+
+/* Hide the note when the gift is opened */
+.is-open #mini-note {
+    display: none;
+}
+
+/* Bounce animation to make it look active */
+@keyframes bounce {
+    0%, 100% { transform: translateY(0) rotate(5deg); }
+    50% { transform: translateY(-10px) rotate(5deg); }
+}
+/* --- UPDATE TO MINI NOTE --- */
+#mini-note {
+    display: none; /* Hidden until the script reveals it */
+    position: absolute;
+    top: 20%;    
+    left: 70%;   /* Positioned to the right of the flower bouquet */
+    z-index: 20;
+    cursor: pointer;
+    animation: bounce 2s infinite ease-in-out;
+}
+
+.note-paper {
+    background: #FFF9C4; 
+    color: #555;
+    padding: 15px;
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: bold;
+    border-radius: 2px;
+    box-shadow: 2px 2px 5px rgba(0,0,0,0.2);
+    transform: rotate(5deg);
+    border: 1px solid #F1E5AC;
+    font-size: 1.1rem;
+}
+
+/* Ensure the message appears nicely over everything else */
+#love-message {
+    z-index: 50; 
+}
